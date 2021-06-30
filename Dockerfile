@@ -1,4 +1,4 @@
-FROM nvidia/cuda:10.0-cudnn7-devel-ubuntu18.04
+FROM nvidia/cuda:11.2.2-devel-ubuntu20.04
 MAINTAINER ashspencil <pencil302@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -14,9 +14,9 @@ RUN apt-get update&& apt-get upgrade -y && \
 RUN apt-get install -y software-properties-common && \
     add-apt-repository ppa:deadsnakes/ppa -y && \
     apt-get update -y && \
-    apt-get install python3.7 -y && \
+    apt-get install python3.8 -y && \
     apt-get clean && \
-    cd /usr/bin/ ; rm python3 ; ln -s python3.7 python3
+    cd /usr/bin/ ; rm python3 ; ln -s python3.8 python3
 
 ### Pip3 && pipenv
 RUN apt-get install -y python3-pip && \
@@ -38,7 +38,7 @@ WORKDIR /envs
 RUN mkdir pytorch
 COPY pytorch_version.txt pytorch/requirements.txt
 WORKDIR pytorch
-RUN pipenv install --python 3.7 && \
+RUN pipenv install --python 3.8 && \
     rm -rf ~/.cache
 
 ### Build Env (Tensorflow_keras version)
@@ -46,7 +46,7 @@ WORKDIR /envs
 RUN mkdir tf_keras
 COPY tf_keras_version.txt tf_keras/requirements.txt
 WORKDIR tf_keras
-RUN pipenv install --python 3.7 && \
+RUN pipenv install --python 3.8 && \
     rm -rf ~/.cache
 
 WORKDIR /envs
@@ -54,19 +54,22 @@ WORKDIR /envs
 ### R for 4.0.1
 
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9 && \
-    sed -i 's/python3/python3.6/g' /usr/bin/add-apt-repository && \
-    add-apt-repository "deb [arch=amd64,i386] https://cran.rstudio.com/bin/linux/ubuntu bionic-cran40/" && \
+##    sed -i 's/python3/python3.6/g' /usr/bin/add-apt-repository && \
+##    add-apt-repository "deb [arch=amd64,i386] https://cran.rstudio.com/bin/linux/ubuntu bionic-cran40/" && \
+
+
+    add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/" && \
     apt-get update -y && \
-    apt-get -y install r-recommended=4.0.1-1.1804.0 r-base=4.0.1-1.1804.0 && \
+    apt-get -y install r-recommended r-base && \
     apt-get clean
 
 ### oracle JAVA 8
-COPY jdk-8u212-linux-x64.tar.gz /opt
+COPY jdk-8u291-linux-x64.tar.gz /opt
 WORKDIR /opt
-RUN tar zxvf jdk-8u212-linux-x64.tar.gz
-RUN rm jdk-8u212-linux-x64.tar.gz
+RUN tar zxvf jdk-8u291-linux-x64.tar.gz
+RUN rm jdk-8u291-linux-x64.tar.gz
 
-ENV JAVA_HOME /opt/jdk1.8.0_212
+ENV JAVA_HOME /opt/jdk1.8.0_291
 ENV JRE_HOME=${JAVA_HOME}/jre
 ENV CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
 ENV PATH=${JAVA_HOME}/bin:$PATH
