@@ -29,7 +29,7 @@ scipy
 six
 tensorboard
 tensorflow-estimator
-tensorflow-gpu
+tensorflow
 termcolor
 urllib3
 Werkzeug
