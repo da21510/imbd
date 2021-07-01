@@ -3,7 +3,7 @@ MAINTAINER da21510 <da21510@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt update && apt-get upgrade -y && \
+RUN apt update && apt upgrade -y && \
     apt install -y --no-install-recommends apt-utils && \
     apt install -y net-tools && \
     apt install -y iputils-ping && \
