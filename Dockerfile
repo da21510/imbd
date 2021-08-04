@@ -1,4 +1,4 @@
-FROM nvidia/cuda:11.2.2-devel-ubuntu20.04
+FROM nvcr.io/nvidia/cuda:11.2.2-cudnn8-devel-ubuntu20.04
 MAINTAINER da21510 <da21510@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
