@@ -11,3 +11,4 @@ xlrd
 matplotlib
 scikit-learn
 tqdm
+lightgbm
