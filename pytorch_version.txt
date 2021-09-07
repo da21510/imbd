@@ -13,3 +13,4 @@ scikit-learn
 tqdm
 lightgbm
 xgboost
+xlutils
