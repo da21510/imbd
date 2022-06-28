@@ -20,8 +20,11 @@ RUN apt install -y software-properties-common && \
 
 ### Pip3 && pipenv
 
-RUN apt install -y pipenv && \
+RUN apt install -y python3-pip && \
     apt clean
+RUN pip3 install -U pip
+RUN pip3 install -U setuptools
+RUN pip3 install pipenv
 
 ### Build Env (Pytorch version)
 ENV WORKON_HOME /envs
