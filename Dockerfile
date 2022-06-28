@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/cuda:11.2.2-cudnn8-devel-ubuntu20.04
+FROM nvcr.io/nvidia/cuda:11.6.2-cudnn8-devel-ubuntu20.04
 MAINTAINER da21510 <da21510@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -10,7 +10,7 @@ RUN apt update && apt upgrade -y && \
     apt install -y vim nano && \
     apt install -y openssh-server && \
     apt clean
-### Python3.7
+### Python3.8
 RUN apt install -y software-properties-common && \
     add-apt-repository ppa:deadsnakes/ppa -y && \
     apt update -y && \
