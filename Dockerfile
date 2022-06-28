@@ -56,12 +56,12 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD5
     apt clean
 
 ### oracle JAVA 8
-COPY jdk-8u291-linux-x64.tar.gz /opt
+COPY jdk-8u333-linux-x64.tar.gz /opt
 WORKDIR /opt
-RUN tar zxvf jdk-8u291-linux-x64.tar.gz
-RUN rm jdk-8u291-linux-x64.tar.gz
+RUN tar zxvf jdk-8u333-linux-x64.tar.gz
+RUN rm jdk-8u333-linux-x64.tar.gz
 
-ENV JAVA_HOME /opt/jdk1.8.0_291
+ENV JAVA_HOME /opt/jdk1.8.0_333
 ENV JRE_HOME=${JAVA_HOME}/jre
 ENV CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
 ENV PATH=${JAVA_HOME}/bin:$PATH
